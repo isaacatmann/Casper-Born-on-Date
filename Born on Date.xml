@@ -41,7 +41,7 @@ elif [ "${#serialNumber}" == 12 ]; then&#13;
         intWeek=$i&#13;
       fi&#13;
   done&#13;
-  if [ "$((intYear % 2))" == 0 ]; then&#13;
+  if [ "$((intYear % 2))" != 0 ]; then&#13;
     intWeek=$((intWeek+27))&#13;
   fi&#13;
 else&#13;
