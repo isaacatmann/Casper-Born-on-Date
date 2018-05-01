@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<extensionAttribute>
+<?xml version="1.0" encoding="UTF-8"?><extensionAttribute>
 <displayName>Born on Date</displayName>
 <description>Guess the date manufactured based off the serial number.  Works with both 11 digit and 12 digit serial numbers.  This is accurate down to the manufacture week but does not guarantee or imply any warranty. </description>
 <dataType>date</dataType>
 <scriptContentsMac>#!/bin/bash&#13;
 &#13;
-#Created by Zach Gottesman for Mann Consulting&#13;
-#March 2015&#13;
-#For more information email support@mann.com or visit http://mann.com&#13;
+# Created by Zach Gottesman, Isaac Ordonez&#13;
+# Mann Consulting (2018-05-01)&#13;
+# For more information email support@mann.com or visit http://mann.com&#13;
 &#13;
 &#13;
 if [[ $# -gt '0' ]]; then&#13;
@@ -33,6 +32,7 @@ elif [ "${#serialNumber}" == 12 ]; then&#13;
     do&#13;
       if [ "${yearValues[i]}" == "$year" ]; then&#13;
         intYear=$(((i / 2) + 2010))&#13;
+        intYearHalf=$i&#13;
       fi&#13;
   done&#13;
   for i in "${!weekValues[@]}"&#13;
@@ -41,7 +41,7 @@ elif [ "${#serialNumber}" == 12 ]; then&#13;
         intWeek=$i&#13;
       fi&#13;
   done&#13;
-  if [ "$((intYear % 2))" != 0 ]; then&#13;
+  if [ "$((intYearHalf % 2))" != 0 ]; then&#13;
     intWeek=$((intWeek+27))&#13;
   fi&#13;
 else&#13;
@@ -59,6 +59,7 @@ if [ ! -z "$result" ]; then&#13;
   printf "&lt;result&gt;%s&lt;/result&gt;" "$result"&#13;
 else&#13;
   printf "&lt;result&gt;none&lt;/result&gt;"&#13;
-fi</scriptContentsMac>
+fi&#13;
+</scriptContentsMac>
 <scriptContentsWindows/>
 </extensionAttribute>
